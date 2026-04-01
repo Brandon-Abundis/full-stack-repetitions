@@ -22,3 +22,16 @@ services:
       - DATABASE_URL=postgres://postgres:docker@db:5432/movies
     depends_on:
       - db
+
+  ui:
+    build: ./ui
+    ports:
+      - 5173:5173
+    volumes:
+      - ./ui:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:8080
+    command: npm run dev
+    depends_on:
+      - api
