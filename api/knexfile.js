@@ -6,9 +6,11 @@
 module.exports = {
 
   development: {
-    client: 'postgres',
+    client: 'pg',
     connection: {
-      host: '127.0.0.1',
+      host: process.env.DATABASE_URL ? 'db' : '127.0.0.1',
+      // host: 'localhost',
+      // host: 'db',
       port: 5432,
       user: 'postgres',
       password: 'docker',

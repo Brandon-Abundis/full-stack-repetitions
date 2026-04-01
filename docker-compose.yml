@@ -10,15 +10,15 @@ services:
     ports:
       - 5432:5432
 
-  # api:
-  #   build: ./api
-  #   ports:
-  #     - 8080:8080
-  #   volumes:
-  #     - ./api:/app
-  #     - /app/node_modules
-  #   environment:
-  #     # FIX: This tells Knex to connect to the 'db' container, not localhost
-  #     - DATABASE_URL=postgres://postgres:docker@db:5432/movies
-  #   depends_on:
-  #     - db
+  api:
+    build: ./api
+    ports:
+      - 8080:8080
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    environment:
+      # FIX: This tells Knex to connect to the 'movies' container, not localhost
+      - DATABASE_URL=postgres://postgres:docker@db:5432/movies
+    depends_on:
+      - db
