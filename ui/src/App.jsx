@@ -1,32 +1,29 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+// import heroImg from './assets/hero.png'
 import './App.css'
+import useFetchMovies from './customHooks/useFetchMovies'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
+
+  const { movies } = useFetchMovies();
+  if(!movies) return <div>Loading Movies</div>
 
   return (
     <>
       <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+        <div className='movie-cards' style={{ display: 'flex', flexDirection:'column', gap: '0.5rem' }} >
+          <h2>Movies</h2>
+          {movies && movies.map(movie =>(
+            <div style={{border: '1px solid #2e303a', borderRadius:'8px', display: 'flex', flexDirection:'column', alignItems:'start', padding:'3px'}}>
+              <span><span style={{color:'white', fontWeight:'400'}}>title: </span>{movie.title}</span>
+              <span><span style={{color:'white', fontWeight:'400'}}>main_character: </span>{movie.main_character}</span>
+              <span><span style={{color:'white', fontWeight:'400'}}>year_released: </span>{movie.year_released}</span>
+            </div>
+          ))}
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
       </section>
 
       <div className="ticks"></div>
