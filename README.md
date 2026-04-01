@@ -1,4 +1,29 @@
 # rapid-full-stack-repo
+
+## How to run:
+ - (1). First make sure docker desktop is running in the background.
+- (2). Go into the api directory and install dependencies
+  - $`cd api`
+  - $`npm init -y`
+  - $`npm install express knex pg cors`
+
+- (3). Use the `docker-compose` file to set up 3 microservices
+  - Make sure your 🐳 docker desktop is up and running!!!
+  - $`cd ..` if you are in the api directory
+  - $`docker-compose up`
+    - Should database called `movies`!
+
+- (4).Migrate and Seed data into the database, steps:
+  - $`cd api`
+  - $`npx knex migrate:latest`
+  - $`mpx knex seed:run`
+
+- (5).Links
+   - `http://localhost:5173/`
+   - `http://localhost:8080/movies`
+
+---
+
 > One day full stack application, styling optional.
 
 ## Table of Contents
@@ -26,9 +51,9 @@
 The purpose of this exercise is to get repetitions creating each of the components of your full stack application. Those components being, the `Database`, the `API`, and the `Front-End`. Once you have created each component you then want to make them communicate between each other. Your `Database` holds data that your `API` accesses, using a technology such as KNEX, and hosts in a **REST**ful manner. And your `Front-End` reaches out and fetches that **REST**ful data and displays it for your end-user to enjoy.
 
 ## Where to start?
-> - Start here, return here. This will be your home base to revisit anytime you are so stuck you are not sure what is needed to fix something. Execute `SCORCHED EARTH` protocol and start her, from step ***0***! 
+> - Start here, return here. This will be your home base to revisit anytime you are so stuck you are not sure what is needed to fix something. Execute `SCORCHED EARTH` protocol and start her, from step ***0***!
 >     - NOTE: All `SCORCHED EARTH` links lead back here.
-> - If you have not done so clone this repository to your local machine. 
+> - If you have not done so clone this repository to your local machine.
 > - All of your code and directories will reside inside of this repo.
 > - If at anypoint you need to execute `SCORCHED EARTH` delete everything but the .gitignore, README.md, and .git files from your `rapid-full-stack-repo`.
 > - You will then be ready to start with a clean slate.
@@ -70,7 +95,7 @@ Time to create your seed file. Move on to the next lesson in Learn *Seeding a Da
 ### ExpressJS API
 Congrats on making it this far. Your goal is to create your `API` that will initially house two endpoints (`/` and `/movies`) in your index.js file. `/` is your home endpoint, you want to let the end-user know they have reached your API, but there is no data for them here. `/movies` is the endpoint that provides the data retained in your `favorites` table, in **JSON** format. Head over to the Learn lesson *Using Knex with Express*. You will find in that lesson a solid starting point for your index.js file. Use it as a reference for creating your first 2 endpoints. One addition you can make right away is to add the use of cors, which you installed earlier. Import cors (using the same import syntax already in the example), and add the line `app.use(cors())` and you should now be good to go avoiding `cors` issues.
 
-You should now be able to run your start command, spinning up your `API`. Once it is up and running, open a browser and visit each endpoint. 
+You should now be able to run your start command, spinning up your `API`. Once it is up and running, open a browser and visit each endpoint.
 >`localhost:8000` should provide the message mentioned earlier <BR>
 >`localhost:8000/movies` should provide a *JSONified* version of your data.
 
@@ -127,10 +152,10 @@ Congratulations you did it. You created a full stack application, you should be 
 # Stretch Goals
 ONLY VISIT HERE ONCE YOU ARE COMFORTABLE WITH THE ABOVE. NOT WHEN YOU HAVE IT MEMORIZED BUT WHEN YOU ARE COMFORTABLE ENOUGH TO SPEAK TO EACH STEP ABOVE. AGAIN NOT ONCE YOU HAVE MEMORIZED IT ALL, BECAUSE DON'T
 
-1. Return to your Back-End and create the remaining CRUD operations.   
-   - Suggested order (not required): POST → DELETE → UPDATE.  
-   - Use Postman to execute these processes for now. You will use your Front-End to do it later. 
-2. In your VITE app create a form that can be used to post a new row into your database. 
+1. Return to your Back-End and create the remaining CRUD operations.
+   - Suggested order (not required): POST → DELETE → UPDATE.
+   - Use Postman to execute these processes for now. You will use your Front-End to do it later.
+2. In your VITE app create a form that can be used to post a new row into your database.
    - This same form can be used to Update a row later (but plan for that when you get there)
 3. Create a way of deleting a row from your DB.
 4. BURN IT DOWN AND DO IT ALL AGAIN INCLUDING THE STRETCH GOALS.
